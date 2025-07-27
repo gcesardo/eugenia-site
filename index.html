@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Eugênia - Sua assistente de estudos com IA para concursos.">
+  <meta name="theme-color" content="#004aad">
+  <title>Eugênia - Assistente de Estudos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --azul: #004aad;
+      --azul-escuro: #00327a;
+      --fundo: #f9f9f9;
+      --branco: #ffffff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--fundo);
+      color: #333;
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, #004aad 0%, #0070e0 100%);
+      color: white;
+      padding: 40px 20px 60px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    header img.logo {
+      max-width: 220px;
+      margin-bottom: 20px;
+    }
+
+    header p {
+      font-size: 1.3rem;
+      margin-top: 10px;
+    }
+
+    nav {
+      background: var(--azul-escuro);
+      padding: 10px;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      overflow-x: auto;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: color 0.3s ease;
+      white-space: nowrap;
+    }
+
+    nav a:hover {
+      color: #ddd;
+    }
+
+    section {
+      padding: 60px 20px;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    section h2 {
+      color: var(--azul-escuro);
+      font-size: 2.2rem;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    section p {
+      text-align: center;
+      font-size: 1.1rem;
+      margin-bottom: 30px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .card {
+      background: var(--branco);
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+    }
+
+    .card img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: 15px;
+    }
+
+    .btn-whatsapp {
+      display: inline-block;
+      background: #25d366;
+      color: white;
+      padding: 14px 24px;
+      border-radius: 6px;
+      font-size: 1.1rem;
+      text-decoration: none;
+      font-weight: bold;
+      margin-top: 20px;
+      transition: background 0.3s ease;
+    }
+
+    .btn-whatsapp:hover {
+      background: #1eae5e;
+    }
+
+    footer {
+      background: var(--azul-escuro);
+      color: white;
+      text-align: center;
+      padding: 25px;
+      margin-top: 60px;
+    }
+
+    #floating-bg {
+      background-image: url('68144457-F278-4244-9D37-4024404314BD.jpeg');
+      background-size: cover;
+      background-repeat: repeat;
+      background-position: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.07;
+      z-index: -1;
+      animation: float 60s infinite linear;
+      pointer-events: none;
+    }
+
+    @keyframes float {
+      0% { background-position: 0 0; }
+      50% { background-position: 50px 30px; }
+      100% { background-position: 0 0; }
+    }
+
+    button.btn-whatsapp {
+      border: none;
+    }
+  </style>
+</head>
+<body>
+
+<div id="floating-bg"></div>
+
+<header>
+  <img src="logo-eugenia.png" alt="Logo Eugênia" class="logo">
+  <p>A Revolucionária Ferramenta de Estudos para Concursos: UMA agente de Inteligência Artificial que te levará à tão sonhada APROVAÇÃO!</p>
+</header>
+
+<nav>
+  <a href="#desenvolvedores">Desenvolvedores</a>
+  <a href="#como-funciona">Como Funciona</a>
+  <a href="#funcionalidades">Funcionalidades</a>
+  <a href="#planos">Concursos</a>
+  <a href="#depoimentos">Depoimentos</a>
+  <a href="#contato">Contato</a>
+</nav>
+
+<section id="desenvolvedores">
+  <h2>Desenvolvedores</h2>
+  <div class="grid">
+    <div class="card">
+      <img src="geraldo-cesar.jpg" alt="Foto de Geraldo Cesar">
+      <h3>Geraldo Cesar</h3>
+      <p>Policial Legislativo aprovado em 2º lugar. Estrategista de estudos e cofundador da Eugênia.</p>
+    </div>
+    <div class="card">
+      <img src="rafael-duclou.jpg" alt="Foto de Rafael Duclou">
+      <h3>Rafael Duclou</h3>
+      <p>Ex-PRF e atual Policial do Senado. Especialista em inteligência aplicada à educação.</p>
+    </div>
+  </div>
+</section>
+
+<section id="como-funciona">
+  <h2>Como Funciona</h2>
+  <p>A Eugênia usa IA para acompanhar seus estudos com técnicas comprovadas: revisão espaçada, flashcards personalizados e relatórios inteligentes.</p>
+
+  <video controls style="width:100%; max-width:720px; display:block; margin: 30px auto; border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.1);">
+    <source src="eugenia-apresentacao.mp4" type="video/mp4">
+    Seu navegador não suporta a reprodução de vídeo.
+  </video>
+</section>
+
+<section id="funcionalidades">
+  <h2>Funcionalidades</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>Flashcards Inteligentes</h3>
+      <p>Criação automática com base nas provas e conteúdo que você estuda.</p>
+    </div>
+    <div class="card">
+      <h3>Revisões no Estilo Anki</h3>
+      <p>Revisão ativa e espaçada dos conteúdos mais difíceis.</p>
+    </div>
+    <div class="card">
+      <h3>Relatórios Semanais</h3>
+      <p>Análise do seu desempenho e sugestões do que revisar.</p>
+    </div>
+  </div>
+</section>
+
+<section id="planos">
+  <h2>Assinaturas por Concurso</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>PRF - Polícia Rodoviária Federal</h3>
+      <p>Estude com a Eugênia para o concurso da PRF com inteligência artificial, revisão ativa e relatórios semanais.</p>
+      <a href="https://kiwify.app/LINK-KIWIFY" target="_blank" class="btn-whatsapp">Assinar agora</a>
+    </div>
+    <div class="card">
+      <h3>Polícia Penal de MG</h3>
+      <p>A Eugênia está sendo treinada especialmente para o edital da Polícia Penal Mineira. Em breve você poderá estudar com ela!</p>
+      <button class="btn-whatsapp" disabled>Em breve</button>
+    </div>
+    <div class="card">
+      <h3>Bombeiros do DF</h3>
+      <p>Estamos preparando a versão da Eugênia focada no concurso do CBMDF. Fique atento às novidades!</p>
+      <button class="btn-whatsapp" disabled>Em breve</button>
+    </div>
+  </div>
+</section>
+
+<section id="depoimentos">
+  <h2>Depoimentos</h2>
+  <p>“Nunca imaginei que uma IA pudesse me ajudar tanto nos estudos. A Eugênia é minha aliada diária.” – João</p>
+  <p>“Passei a estudar com mais foco e estratégia. Os relatórios são incríveis!” – Camila</p>
+</section>
+
+<section id="contato">
+  <h2>Fale com a Eugênia</h2>
+  <p>Pronto para transformar seus estudos? Fale com a Eugênia agora mesmo:</p>
+  <a id="cta-whatsapp" href="https://wa.me/55XXXXXXXXXX" target="_blank" class="btn-whatsapp">Abrir WhatsApp</a>
+</section>
+
+<footer>
+  <p>&copy; 2025 Eugênia. Todos os direitos reservados.</p>
+</footer>
+
+</body>
+</html>
