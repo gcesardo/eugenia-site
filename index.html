@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Eugênia — Assistente de Estudos Inteligente</title>
+  <meta name="description" content="Eugênia é sua mentora virtual no WhatsApp para concursos. Flashcards, revisão espaçada e relatórios de desempenho.">
+  <style>
+    :root{
+      --brand:#667eea;
+      --brand-2:#764ba2;
+      --brand-hover:#556cd6;
+      --text:#111;
+      --muted:#4b5563;
+      --card:#ffffffcc;
+      --border:#e5e7eb;
+      --bg:#0f1124;
+      /* Troque para o caminho da sua imagem publicada no GitHub Pages */
+      --bg-image:url('./68144457-F278-4244-9D37-4024404314BD.jpeg');
+    }
+    *,*::before,*::after{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--text);
+      background: radial-gradient(1200px 600px at 10% -10%, rgba(102,126,234,.35), transparent 60%),
+                  radial-gradient(800px 500px at 90% -20%, rgba(118,75,162,.35), transparent 60%),
+                  var(--bg);
+      overflow-x:hidden;
+    }
+
+    /* ====== Header / Navbar ====== */
+    .nav-wrap{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: saturate(160%) blur(8px);
+      background: linear-gradient( to right, rgba(15,17,36,.7), rgba(15,17,36,.4) );
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .nav{
+      max-width:1100px; margin:0 auto; padding:14px 18px;
+      display:flex; align-items:center; gap:16px;
+    }
+    .logo{
+      display:flex; align-items:center; gap:10px; text-decoration:none; color:#fff;
+    }
+    .logo-badge{
+      width:36px; height:36px; border-radius:10px;
+      background: linear-gradient(135deg, var(--brand), var(--brand-2));
+      display:grid; place-items:center; font-weight:800; color:#fff;
+      box-shadow: 0 6px 18px rgba(102,126,234,.35);
+    }
+    .brand-title{ font-weight:800; letter-spacing:.2px; color:#fff }
+    .spacer{ flex:1 }
+    .menu{
+      display:flex; gap:18px; align-items:center;
+    }
+    .menu a{
+      color:#f3f4f6; text-decoration:none; font-weight:600; font-size:.95rem;
+      padding:8px 10px; border-radius:10px;
+    }
+    .menu a:hover{ background:rgba(255,255,255,.08) }
+
+    .cta-top{
+      background: linear-gradient(135deg, var(--brand), var(--brand-2));
+      color:#fff; border:0; padding:10px 14px; border-radius:12px;
+      font-weight:800; box-shadow:0 8px 20px rgba(102,126,234,.35); cursor:pointer;
+    }
+    .hamb{ display:none; color:#fff; background:none; border:0; font-size:1.6rem; }
+
+    @media (max-width: 860px){
+      .menu{ display:none }
+      .hamb{ display:block; margin-left:auto }
+      .menu.open{
+        position:absolute; top:58px; right:12px; left:12px;
+        display:flex; flex-direction:column;
+        background:rgba(17,19,40,.98);
+        border:1px solid rgba(255,255,255,.08);
+        padding:10px; border-radius:14px; gap:6px;
+      }
+      .menu.open a{ padding:12px 10px }
+    }
+
+    /* ====== Hero ====== */
+    .hero{
+      position:relative;
+      min-height:68vh;
+      display:grid; place-items:center;
+      padding:60px 18px 30px;
+      color:#fff;
+      text-align:center;
+      overflow:hidden;
+    }
+    .hero::before{
+      content:"";
+      position:absolute; inset:0;
+      background-image: var(--bg-image);
+      background-size:cover; background-position:center;
+      opacity:.18; filter: saturate(110%) contrast(105%);
+      z-index:-2;
+    }
+    /* elementos flutuantes */
+    .float{
+      position:absolute; inset:0; pointer-events:none; z-index:-1;
+      background:
+        radial-gradient(120px 40px at 20% 30%, rgba(255,255,255,.12), transparent 60%),
+        radial-gradient(90px 60px at 80% 35%, rgba(255,255,255,.08), transparent 60%),
+        radial-gradient(70px 70px at 60% 70%, rgba(255,255,255,.10), transparent 60%);
+      animation: drift 16s linear infinite alternate;
+    }
+    @keyframes drift{
+      from{ transform: translateY(0) }
+      to{ transform: translateY(16px) }
+    }
+
+    .hero h1{
+      font-size: clamp(1.8rem, 4.2vw, 3rem);
+      line-height:1.1; margin:0 0 12px; letter-spacing:.2px;
+      text-shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
+    .hero p{
+      max-width:760px; margin:0 auto 18px; color:#e5e7eb; font-size: clamp(1rem, 2.4vw, 1.1rem);
+    }
+    .hero .actions{ display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:8px }
+    .btn{
+      border:0; border-radius:14px; padding:12px 16px;
+      font-weight:800; cursor:pointer; text-decoration:none; display:inline-block;
+    }
+    .btn-primary{
+      background: linear-gradient(135deg, var(--brand), var(--brand-2));
+      color:#fff; box-shadow:0 10px 28px rgba(102,126,234,.45);
+    }
+    .btn-ghost{
+      background: rgba(255,255,255,.1); color:#fff; border:1px solid rgba(255,255,255,.2)
+    }
+    .badges{
+      margin-top:14px; display:flex; gap:10px; flex-wrap:wrap; justify-content:center
+    }
+    .pill{ color:#dbeafe; background:rgba(59,130,246,.15); border:1px solid rgba(59,130,246,.3); padding:6px 10px; border-radius:999px; font-weight:700; font-size:.85rem }
+
+    /* ====== Container & Cards ====== */
+    .container{ max-width:1100px; margin: 0 auto; padding: 36px 18px }
+
+    .card{
+      background: var(--card);
+      backdrop-filter: blur(6px);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.06);
+    }
+
+    /* ====== FAQ ====== */
+    .faq-wrap{ margin-top: 10px }
+    .faq-title{ color:#111; text-align:center; margin: 10px 0 6px; font-size:1.6rem }
+    .faq-sub{ color:var(--muted); text-align:center; margin-bottom:18px; }
+
+    .accordion{ max-width: 950px; margin: 0 auto }
+    .accordion-item{
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius: 14px;
+      overflow:hidden;
+      margin-bottom:12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,.05);
+    }
+    .accordion-header{
+      background: var(--brand);
+      color:#fff; width:100%;
+      padding: 16px 18px; border:0; text-align:left;
+      display:flex; align-items:center; gap:10px; cursor:pointer;
+      font-weight:800; font-size:1rem;
+      transition: background .25s ease;
+    }
+    .accordion-header:hover{ background: var(--brand-hover) }
+    .accordion-header:focus{ outline:2px solid #0000; box-shadow:0 0 0 3px rgba(102,126,234,.35) }
+
+    .chev{ margin-left:auto; transition: transform .25s ease }
+    .accordion-item[aria-expanded="true"] .chev{ transform: rotate(180deg) }
+
+    .accordion-content{
+      max-height:0; overflow:hidden;
+      transition:max-height .35s ease, padding .25s ease;
+      padding:0 18px; background:#fff;
+    }
+    .accordion-item[aria-expanded="true"] .accordion-content{
+      max-height:480px; padding: 16px 18px 18px;
+    }
+    .accordion-content p{ margin:0; color:#444; line-height:1.6 }
+    .accordion-content p + p{ margin-top:10px }
+
+    .cta-inline{
+      display:inline-block; margin-top:12px; padding:10px 14px;
+      border-radius:12px; background:linear-gradient(135deg, var(--brand), var(--brand-2));
+      color:#fff; font-weight:800; text-decoration:none;
+      box-shadow:0 8px 18px rgba(102,126,234,.35);
+    }
+
+    /* ====== Footer ====== */
+    footer{
+      margin-top:40px; padding:24px 18px;
+      background:#0b0d1d; color:#e5e7eb; text-align:center; font-size:.95rem
+    }
+
+    /* ====== Utilities ====== */
+    .grid-2{
+      display:grid; grid-template-columns: 1.2fr .8fr; gap:16px; align-items:stretch;
+    }
+    @media (max-width: 980px){
+      .grid-2{ grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ====== NAVBAR ====== -->
+  <div class="nav-wrap">
+    <nav class="nav" aria-label="Principal">
+      <a class="logo" href="#top">
+        <span class="logo-badge">E</span>
+        <span class="brand-title">Eugênia</span>
+      </a>
+      <div class="spacer"></div>
+      <button class="hamb" aria-label="Menu" aria-expanded="false">☰</button>
+      <div class="menu" id="menu">
+        <a href="#sobre">Sobre</a>
+        <a href="#faq">FAQ</a>
+        <a href="#planos">Planos</a>
+        <a href="#contato">Contato</a>
+        <a class="cta-top" href="#contratar-eugenia">Começar agora</a>
+      </div>
+    </nav>
+  </div>
+
+  <!-- ====== HERO ====== -->
+  <header class="hero" id="top">
+    <div class="float"></div>
+    <div class="container">
+      <h1>Estude com inteligência: flashcards, revisão espaçada e relatórios — direto no WhatsApp</h1>
+      <p>A <strong>Eugênia</strong> organiza suas revisões no estilo Anki, cria questões inéditas e mostra onde você precisa focar. Treinada para PF, PRF, PCDF, Polícia Penal e muito mais.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="#contratar-eugenia">Quero começar agora</a>
+        <a class="btn btn-ghost" href="#faq">Ver perguntas frequentes</a>
+      </div>
+      <div class="badges">
+        <span class="pill">Funciona no WhatsApp</span>
+        <span class="pill">7 dias de garantia</span>
+        <span class="pill">Conteúdo atualizado</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ====== SOBRE / HIGHLIGHTS ====== -->
+  <section id="sobre" class="container">
+    <div class="grid-2">
+      <div class="card">
+        <h2 style="margin:0 0 10px;">Por que a Eugênia?</h2>
+        <p class="muted">Criada por <b>Geraldo César</b> e <b>Rafael Duclou</b>, policiais legislativos aprovados, para transformar estudo em resultados.</p>
+        <ul style="margin:12px 0 0; padding-left:18px; line-height:1.8; color:#374151">
+          <li>Revisões inteligentes (espaçadas) com dificuldade: fácil / difícil / muito difícil.</li>
+          <li>Flashcards prontos e inéditos alinhados ao último edital.</li>
+          <li>Relatórios de desempenho e foco nos seus pontos fracos.</li>
+          <li>Sem app novo: tudo pelo WhatsApp, no celular ou PC.</li>
+        </ul>
+      </div>
+      <div class="card" aria-hidden="true" style="background:linear-gradient(135deg, #ffffffcc, #f7f7ffcc); display:grid; place-items:center; min-height:220px;">
+        <div style="text-align:center">
+          <div style="font-size:2.6rem; font-weight:900; background:linear-gradient(135deg,var(--brand),var(--brand-2)); -webkit-background-clip:text; background-clip:text; color:transparent;">+ Memória. – Esforço.</div>
+          <div style="margin-top:8px; color:#4b5563">O estudo certo, no momento certo.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== FAQ ====== -->
+  <section id="faq" class="container faq-wrap">
+    <h2 class="faq-title">❓ Perguntas Frequentes</h2>
+    <p class="faq-sub">Tudo o que você precisa saber para começar com a <b>Eugênia</b> no WhatsApp.</p>
+
+    <div class="accordion" role="region" aria-label="Perguntas Frequentes">
+
+      <!-- 1 -->
+      <div class="accordion-item" aria-expanded="false">
+        <button class="accordion-header" aria-controls="faq1" aria-expanded="false">
+          1. Funciona no computador e no celular?
+          <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M6 9l6 6 6-6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div id="faq1" class="accordion-content" role="region" aria-labelledby="faq1">
+          <p><b>Sim!</b> A Eugênia foi feita para você estudar direto no <b>WhatsApp</b>, tanto no <b>computador</b> quanto no <b>celular</b>, sem instalar nada. Basta abrir a conversa e começar a receber flashcards e revisões — onde e quando quiser.</p>
+          <p>👉 Mais de <b>90% dos nossos alunos</b> estudam exclusivamente pelo celular e aproveitam “tempos mortos” do dia: no transporte, na fila do banco ou no intervalo do trabalho.</p>
+        </div>
+      </div>
+
+      <!-- 2 -->
+      <div class="accordion-item" aria-expanded="false">
+        <button class="accordion-header" aria-controls="faq2" aria-expanded="false">
+          2. Preciso ter material próprio para criar os flashcards?
+          <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M6 9l6 6 6-6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div id="faq2" class="accordion-content" role="region" aria-labelledby="faq2">
+          <p><b>Não!</b> Você já começa com uma <b>base estratégica</b>, repleta de flashcards prontos, desenvolvidos por <b>Geraldo César</b> (Policial Legislativo aprovado em 2º lugar no Senado Federal) e <b>Rafael Duclou</b> (ex-PRF e atualmente Policial Legislativo no Senado).</p>
+          <p>👉 É conteúdo curado, focado no que mais cai e pensado para acelerar sua aprovação desde o primeiro dia.</p>
+        </div>
+      </div>
+
+      <!-- 3 -->
+      <div class="accordion-item" aria-expanded="false">
+        <button class="accordion-header" aria-controls="faq3" aria-expanded="false">
+          3. Preciso estudar muitas horas por dia para ter resultado?
+          <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M6 9l6 6 6-6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div id="faq3" class="accordion-content" role="region" aria-labelledby="faq3">
+          <p><b>Definitivamente, não.</b> A metodologia da Eugênia foi projetada para funcionar com sessões curtas e consistentes.</p>
+          <p>👉 Com apenas <b>20 a 30 minutos diários</b>, você já nota evolução e sente mais segurança ao responder questões. O segredo está nas <b>revisões espaçadas</b> e no <b>treino ativo de memorização</b>.</p>
+        </div>
+      </div>
+
+      <!-- 4 -->
+      <div class="accordion-item" aria-expanded="false">
+        <button class="accordion-header" aria-controls="faq4" aria-expanded="false">
+          4. Tem garantia?
+          <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M6 9l6 6 6-6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div id="faq4" class="accordion-content" role="region" aria-labelledby="faq4">
+          <p><b>Sim!</b> Você tem <b>7 dias de garantia incondicional</b>. Use à vontade e, se não gostar, devolvemos <b>100% do valor investido</b>.</p>
+          <p>👉 Sem letras miúdas, sem burocracia.</p>
+        </div>
+      </div>
+
+      <!-- 5 -->
+      <div class="accordion-item" aria-expanded="false">
+        <button class="accordion-header" aria-controls="faq5" aria-expanded="false">
+          5. Como entram os flashcards inéditos?
+          <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M6 9l6 6 6-6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div id="faq5" class="accordion-content" role="region" aria-labelledby="faq5">
+          <p>A base de conhecimento da Eugênia cresce todos os dias.</p>
+          <p>👉 Novos flashcards entram continuamente, sempre de acordo com o <b>último edital</b>, além de <b>atualizações legislativas e jurisprudenciais</b>.</p>
+          <p>📌 Isso significa que você estuda com <b>material vivo, atualizado</b> e impossível de encontrar em cursinhos tradicionais, que levam meses para atualizar conteúdo.</p>
+        </div>
+      </div>
+
+      <!-- 6 -->
+      <div class="accordion-item" aria-expanded="false">
+        <button class="accordion-header" aria-controls="faq6" aria-expanded="false">
+          6. Como começo a usar a Eugênia?
+          <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M6 9l6 6 6-6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div id="faq6" class="accordion-content" role="region" aria-labelledby="faq6">
+          <p>É simples e rápido:</p>
+          <p>1) Escolha sua <b>versão de concurso</b> (PRF, PF, PCDF, Polícia Penal, etc.).<br/>
+             2) Faça o cadastro e entre no <b>WhatsApp da Eugênia</b>.<br/>
+             3) Responda ao onboarding e receba seus primeiros <b>flashcards</b> hoje mesmo.</p>
+          <a class="cta-inline" id="contratar-eugenia" href="#checkout">Quero começar agora</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ====== Planos (placeholder) ====== -->
+  <section id="planos" class="container">
+    <div class="card" style="text-align:center">
+      <h2 style="margin:0 0 8px;">Planos</h2>
+      <p class="muted" style="color:#4b5563; margin-top:4px">Em breve: escolha o plano ideal para o seu concurso.</p>
+      <div style="margin-top:14px">
+        <a class="btn btn-primary" href="#checkout">Avise-me no lançamento</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== Contato (placeholder) ====== -->
+  <section id="contato" class="container">
+    <div class="card">
+      <h2 style="margin:0 0 10px;">Contato</h2>
+      <p style="color:#374151">Tem dúvidas? Fale com a gente pelo WhatsApp ou e-mail e a equipe responde rapidinho.</p>
+      <ul style="margin:10px 0 0; padding-left:18px; line-height:1.9; color:#374151">
+        <li>WhatsApp: <a href="https://wa.me/5500000000000" target="_blank" rel="noopener">+55 (00) 00000-0000</a></li>
+        <li>E-mail: <a href="mailto:contato@eugenia.ai">contato@eugenia.ai</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ====== Footer ====== -->
+  <footer>
+    © 2025 Eugênia — Todos os direitos reservados.
+  </footer>
+
+  <script>
+    // Menu responsivo
+    const hamb = document.querySelector('.hamb');
+    const menu = document.getElementById('menu');
+    hamb?.addEventListener('click', () => {
+      const open = menu.classList.toggle('open');
+      hamb.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+
+    // Acordeão acessível: abre um e fecha os demais
+    const items = document.querySelectorAll('.accordion-item');
+    const headers = document.querySelectorAll('.accordion-header');
+
+    headers.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const item = btn.parentElement;
+        const isOpen = item.getAttribute('aria-expanded') === 'true';
+
+        items.forEach(i => {
+          i.setAttribute('aria-expanded','false');
+          const h = i.querySelector('.accordion-header');
+          if(h) h.setAttribute('aria-expanded','false');
+        });
+
+        if(!isOpen){
+          item.setAttribute('aria-expanded','true');
+          btn.setAttribute('aria-expanded','true');
+        }
+      });
+
+      // acessibilidade via teclado
+      btn.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault(); btn.click();
+        }
+      });
+    });
+  </script>
+</body>
+</html>
