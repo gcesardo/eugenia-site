@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eugênia PRF - Assistente de IA para Concursos no WhatsApp</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #003d7a 0%, #1e5f99 50%, #2a75bb 100%);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Nova alteração para o fundo com marca d'água */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('IMAGEM_PRF_MELHORADA.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.15;
+            z-index: 1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero h1 {
+            font-size: 3.5em;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .hero .subheadline {
+            font-size: 1.4em;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #FFD700 0%, #FFC000 100%);
+            color: #003d7a;
+            padding: 20px 40px;
+            font-size: 1.3em;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 50px;
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.4);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .cta-button:hover {
+            background: linear-gradient(135deg, #FFC000 0%, #FFB000 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(255, 215, 0, 0.6);
+            color: #003d7a;
+        }
+        
+        .alert-banner {
+            background: linear-gradient(135deg, #FFD700 0%, #FFC000 100%);
+            color: #003d7a;
+            text-align: center;
+            padding: 15px;
+            font-weight: bold;
+            font-size: 1.1em;
+            animation: pulse 2s infinite;
+            /* Adicionado para fixar no topo */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        
+        .alert-siren {
+            display: inline-block;
+            animation: siren-flash 1s infinite alternate;
+            transform-origin: center;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.8; }
+            100% { opacity: 1; }
+        }
+        
+        @keyframes siren-flash {
+            0% { 
+                transform: rotate(-10deg) scale(1);
+                filter: hue-rotate(0deg) brightness(1);
+            }
+            25% { 
+                transform: rotate(10deg) scale(1.1);
+                filter: hue-rotate(60deg) brightness(1.3);
+            }
+            50% { 
+                transform: rotate(-5deg) scale(1.05);
+                filter: hue-rotate(120deg) brightness(1.5);
+            }
+            75% { 
+                transform: rotate(5deg) scale(1.15);
+                filter: hue-rotate(180deg) brightness(1.2);
+            }
+            100% { 
+                transform: rotate(0deg) scale(1.2);
+                filter: hue-rotate(360deg) brightness(1.6);
+            }
+        }
+        
+        .section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            font-size: 2.5em;
+            text-align: center;
+            margin-bottom: 50px;
+            color: #2c3e50;
+            font-weight: bold;
+        }
+        
+        .benefits {
+            background: white;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+        
+        .benefit-card {
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .benefit-icon {
+            font-size: 3em;
+            margin-bottom: 20px;
+            color: #003d7a;
+        }
+        
+        .benefit-card h3 {
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        
+        .proof {
+            background: linear-gradient(135deg, #003d7a 0%, #1e5f99 50%, #2a75bb 100%);
+            color: white;
+        }
+        
+        .proof .section-title {
+            color: white;
+        }
+        
+        .creators-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+        
+        .creator-card {
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+        
+        .creator-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            background: #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+            color: #666;
+        }
+        
+        .how-it-works {
+            background: #f8f9fa;
+        }
+        
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .step {
+            text-align: center;
+            padding: 30px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .step-number {
+            background: linear-gradient(135deg, #003d7a 0%, #1e5f99 100%);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            margin: 0 auto 20px;
+        }
+        
+        .testimonials {
+            background: white;
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .testimonial {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            border-left: 5px solid #003d7a;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            font-size: 1.1em;
+            line-height: 1.8;
+        }
+        
+        .testimonial-author {
+            font-weight: bold;
+            color: #003d7a;
+        }
+        
+        .faq {
+            background: #f8f9fa;
+        }
+        
+        .faq-item {
+            background: white;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .faq-question {
+            padding: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            border-bottom: 1px solid #eee;
+            color: #003d7a;
+            font-size: 1.1em;
+        }
+        
+        .faq-answer {
+            padding: 20px;
+            color: #666;
+            line-height: 1.8;
+            display: none;
+            transition: all 0.3s ease;
+        }
+        
+        .faq-answer.show {
+            display: block;
+        }
+        
+        .faq-question::after {
+            content: '+';
+            float: right;
+            font-size: 1.5em;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+        
+        .faq-question.active::after {
+            transform: rotate(45deg);
+        }
+        
+        .cta-section {
+            background: linear-gradient(135deg, #003d7a 0%, #1e5f99 50%, #2a75bb 100%);
+            color: white;
+            text-align: center;
+            padding: 100px 0;
+        }
+        
+        .cta-section h2 {
+            font-size: 2.8em;
+            margin-bottom: 30px;
+        }
+        
+        .cta-section p {
+            font-size: 1.3em;
+            margin-bottom: 40px;
+            opacity: 0.95;
+        }
+        
+        .cta-section .cta-button {
+            background: linear-gradient(135deg, #FFD700 0%, #FFC000 100%);
+            color: #003d7a;
+        }
+        
+        .cta-section .cta-button:hover {
+            background: linear-gradient(135deg, #FFC000 0%, #FFB000 100%);
+            color: #003d7a;
+        }
+        
+        .whatsapp-demo {
+            background: white;
+        }
+        
+        .phone-mockup {
+            max-width: 300px;
+            margin: 0 auto;
+            background: #000;
+            border-radius: 30px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .screen {
+            background: #e5ddd5;
+            height: 500px;
+            border-radius: 20px;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .whatsapp-header {
+            background: #075e54;
+            color: white;
+            padding: 15px;
+            border-radius: 10px 10px 0 0;
+            text-align: center;
+            font-weight: bold;
+            margin: -20px -20px 20px -20px;
+        }
+        
+        .message {
+            background: white;
+            padding: 10px 15px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            max-width: 80%;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .message.sent {
+            background: #dcf8c6;
+            margin-left: auto;
+        }
+        
+        .video-container {
+            text-align: center;
+            margin: 20px 0;
+            position: relative;
+        }
+        
+        .video-container video,
+        .video-container iframe {
+            max-width: 100%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .video-container iframe {
+            aspect-ratio: 16/9;
+            width: 100%;
+            max-width: 600px;
+            height: 315px;
+        }
+        
+        /* Play button overlay para mais engagement visual */
+        .video-play-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 61, 122, 0.9);
+            color: #FFD700;
+            border: none;
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            font-size: 2em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 5px 5px 20px rgba(0, 61, 122, 0.5);
+        }
+        
+        /* Destacar textos amarelos específicos da PRF */
+        .creator-card p:nth-of-type(1) {
+            color: #FFD700 !important;
+        }
+        
+        .cta-section div[style*="backdrop-filter"] {
+            background: rgba(255, 215, 0, 0.1) !important;
+        }
+        
+        .cta-section div[style*="backdrop-filter"] div {
+            color: #FFD700;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5em;
+            }
+            
+            .hero .subheadline {
+                font-size: 1.2em;
+            }
+            
+            .section-title {
+                font-size: 2em;
+            }
+            
+            .cta-button {
+                padding: 15px 30px;
+                font-size: 1.1em;
+            }
+            
+            .video-container iframe {
+                height: 200px;
+            }
+            
+            .video-play-overlay {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="alert-banner">
+        <span class="alert-siren">🚨</span> ATENÇÃO: Enquanto você estuda do jeito antigo, outros já estão na frente com IA!
+    </div>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>🎯 EUGÊNIA PRF<br>Sua Mentora de IA no WhatsApp</h1>
+                <p class="subheadline">A primeira assistente de estudos com Inteligência Artificial 100% focada no concurso da PRF. Estude com flashcards inteligentes, revisão espaçada e acompanhamento personalizado direto no seu WhatsApp!</p>
+                <a href="#" class="cta-button">🚀 QUERO ESTUDAR COM A EUGÊNIA PRF</a>
+                <p style="margin-top: 20px; font-size: 1.2em; font-weight: bold; color: #FFD700;">Por apenas R$ 59,90/mês!</p>
+                <p style="margin-top: 20px; opacity: 0.8;">✅ Sem baixar app • ✅ Funciona no WhatsApp • ✅ Conteúdo 100% atualizado</p>
+                
+                <div style="margin-top: 50px;">
+                    <p style="font-size: 1.2em; margin-bottom: 20px; opacity: 0.9;">👇 <strong>Assista este vídeo e descubra como a Eugênia vai acelerar sua aprovação:</strong></p>
+                    <div class="video-container">
+                        <video controls poster="[THUMBNAIL_VIDEO]" style="width: 100%; max-width: 600px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+                            <source src="[VIDEO_URL]" type="video/mp4">
+                            Seu navegador não suporta o elemento de vídeo.
+                        </video>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="benefits section">
+        <div class="container">
+            <h2 class="section-title">Por Que a Eugênia PRF Vai Te Deixar Anos à Frente dos Outros Candidatos?</h2>
+            
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">🧠</div>
+                    <h3>Flashcards Inteligentes</h3>
+                    <p>Cards que aprendem seu ritmo e apresentam exatamente o que você precisa revisar no momento ideal para maximizar sua retenção.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">⚡</div>
+                    <h3>Revisão Espaçada Anki</h3>
+                    <p>Método científico que multiplica sua retenção em até 300%. Você nunca mais vai "esquecer" uma matéria que já estudou.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">🎯</div>
+                    <h3>100% Focado no Último Edital</h3>
+                    <p>Cada questão, explicação e dica é milimetricamente alinhada com o que a PRF vai cobrar na sua prova.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">📊</div>
+                    <h3>Relatórios de Performance</h3>
+                    <p>Saiba exatamente em que ponto está e o que precisa focar para garantir sua aprovação com dados precisos.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">🔔</div>
+                    <h3>Notificações Automáticas</h3>
+                    <p>Nunca mais você vai "esquecer" de estudar. A Eugênia cuida disso para você com lembretes inteligentes.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">📱</div>
+                    <h3>Direto no WhatsApp</h3>
+                    <p>Sem baixar app! Funciona no WhatsApp que você já usa. Simples, prático e sem ocupar memória do celular.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="proof section">
+        <div class="container">
+            <h2 class="section-title">Criada por Quem REALMENTE Entende de Concurso Público</h2>
+            <p style="text-align: center; font-size: 1.2em; margin-bottom: 30px;">A Eugênia não foi criada por qualquer pessoa. Ela é obra de dois gigantes da aprovação:</p>
+            
+            <div class="creators-grid">
+                <div class="creator-card">
+                    <div class="creator-avatar">[FOTO]</div>
+                    <h3>Geraldo César</h3>
+                    <p style="font-size: 1.1em; margin: 10px 0; color: #FFD700;">Policial Legislativo - 2º Lugar no Senado Federal</p>
+                    <p>Um homem que viveu na pele o que você está vivendo agora. Sentiu a pressão, a ansiedade, mas VENCEU e hoje quer te entregar o mapa da mina.</p>
+                </div>
+                
+                <div class="creator-card">
+                    <div class="creator-avatar">[FOTO]</div>
+                    <h3>Rafael Duclou</h3>
+                    <p style="font-size: 1.1em; margin: 10px 0; color: #FFD700;">Ex-PRF e Policial Legislativo no Senado</p>
+                    <p>Conhece cada detalhe da carreira da PRF por ter vivido na pele. Hoje, como Policial Legislativo, une experiência prática com conhecimento estratégico.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="whatsapp-demo section">
+        <div class="container">
+            <h2 class="section-title">Veja Como Funciona no Seu WhatsApp</h2>
+            <p style="text-align: center; font-size: 1.2em; margin-bottom: 50px;">É como ter um professor particular que mora no seu WhatsApp!</p>
+            
+            <div class="phone-mockup">
+                <div class="screen">
+                    <div class="whatsapp-header">
+                        📱 Eugênia PRF - Sua Mentora de IA
+                    </div>
+                    
+                    <div class="message">
+                        Oi! Sou a Eugênia, sua mentora de IA para a PRF! 👩‍🏫
+                        
+                        Vamos estudar hoje? Que tal começarmos com algumas questões de Direito Penal?
+                    </div>
+                    
+                    <div class="message sent">
+                        Vamos! Estou pronto 💪
+                    </div>
+                    
+                    <div class="message">
+                        Perfeito! Baseado no seu histórico, vou focar nos seus pontos fracos:
+                        
+                        📚 QUESTÃO 1/5
+                        Sobre crimes contra a vida...
+                        [Questão personalizada]
+                        
+                        A) Alternativa 1
+                        B) Alternativa 2
+                        C) Alternativa 3
+                        D) Alternativa 4
+                    </div>
+                    
+                    <div class="message sent">
+                        Alternativa C
+                    </div>
+                    
+                    <div class="message">
+                        🎉 CORRETO! 
+                        
+                        📊 Seu desempenho:
+                        - Acertos hoje: 85%
+                        - Evolução semanal: +12%
+                        
+                        💡 DICA: Continue assim! Vou programar uma revisão desta matéria para daqui 3 dias.
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 40px;">
+                <p style="font-size: 1.2em; color: #666; margin-bottom: 30px;"><strong>É exatamente assim que funciona:</strong> Simples, direto e eficaz!</p>
+                <a href="#" class="cta-button">QUERO COMEÇAR AGORA! 🚀</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="how-it-works section">
+        <div class="container">
+            <h2 class="section-title">Como Começar em 3 Passos Simples</h2>
+            
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Clique e Assine</h3>
+                    <p>Clique no botão, escolha seu plano a partir de **R$ 59,90/mês** e faça o pagamento seguro. Processo rápido e sem burocracia.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Recebe no WhatsApp</h3>
+                    <p>Adicione o contato da Eugênia no seu WhatsApp. Não precisa baixar nenhum app adicional!</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Estuda e Conquista</h3>
+                    <p>Comece a estudar com flashcards inteligentes, revisão espaçada e acompanhamento personalizado!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials section">
+        <div class="container">
+            <h2 class="section-title">O Que Nossos Alunos Estão Falando</h2>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial">
+                    <div class="testimonial-text">
+                        "Incrível! A Eugênia me ajudou a organizar meus estudos de um jeito que nunca imaginei. Os flashcards são perfeitos e as notificações me mantêm sempre focado. Já sinto que estou muito mais preparado!"
+                    </div>
+                    <div class="testimonial-author">- Carlos M., Candidato PRF</div>
+                </div>
+                
+                <div class="testimonial">
+                    <div class="testimonial-text">
+                        "O que mais me impressionou foi a precisão das questões. A IA realmente entende onde tenho dificuldade e foca exatamente nisso. É como ter um professor particular 24h no WhatsApp!"
+                    </div>
+                    <div class="testimonial-author">- Ana L., Estudando para PRF</div>
+                </div>
+                
+                <div class="testimonial">
+                    <div class="testimonial-text">
+                        "Estava perdido nos estudos até conhecer a Eugênia. Agora tenho um plano claro, sei exatamente o que estudar cada dia e minha evolução é visível nos relatórios. Recomendo demais!"
+                    </div>
+                    <div class="testimonial-author">- João P., Futuro PRF</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq section">
+        <div class="container">
+            <h2 class="section-title">Dúvidas Frequentes</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">A Eugênia funciona no computador e no celular?</div>
+                <div class="faq-answer">Sim! Como funciona pelo WhatsApp, você pode usar tanto no celular quanto no WhatsApp Web no computador. Total flexibilidade para estudar onde e quando quiser.</div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Preciso ter material de estudo próprio?</div>
+                <div class="faq-answer">Não! A Eugênia já vem com todo o conteúdo necessário, baseado no último edital da PRF. Questões inéditas, explicações detalhadas e material de revisão já inclusos.</div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Quantas horas por dia preciso estudar?</div>
+                <div class="faq-answer">A Eugênia se adapta ao SEU tempo! Pode estudar 30 minutos ou 3 horas por dia. O importante é a consistência, e a IA vai otimizar seu tempo para máxima eficiência.</div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Funciona mesmo sem baixar app?</div>
+                <div class="faq-answer">Exato! 100% no WhatsApp que você já tem. Não ocupa memória adicional, não trava o celular e você já conhece a interface. Simplicidade total!</div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">E se eu não gostar? Tem garantia?</div>
+                <div class="faq-answer">Sim! Oferecemos garantia de 7 dias. Se não ficar satisfeito, devolvemos 100% do seu dinheiro, sem perguntas.</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2>🔥 Sua Farda da PRF Te Espera!</h2>
+            <p>Não deixe para amanhã a decisão que pode <strong>transformar completamente sua vida</strong> hoje.</p>
+            
+            <div style="background: rgba(255,215,0,0.1); padding: 30px; border-radius: 15px; margin: 40px 0; backdrop-filter: blur(10px);">
+                <h3 style="font-size: 1.8em; margin-bottom: 20px; color: #FFD700;">🌟 PRF: A MELHOR CARREIRA DO BRASIL!</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; text-align: left;">
+                    <div style="color: #FFD700;">✅ <strong>Salário de R$ 15.000,00</strong></div>
+                    <div style="color: #FFD700;">✅ <strong>Escala 1x3</strong> (trabalha 1, folga 3)</div>
+                    <div style="color: #FFD700;">✅ <strong>Estabilidade</strong> e respeito</div>
+                    <div style="color: #FFD700;">✅ <strong>Missão nobre:</strong> salvar vidas</div>
+                </div>
+            </div>
+            
+            <p style="font-size: 1.4em; font-weight: bold; margin-bottom: 20px;">Comece hoje por apenas R$ 59,90/mês!</p>
+            <a href="#" class="cta-button" style="font-size: 1.4em; padding: 25px 50px;">
+                🚀 COMEÇAR AGORA COM A EUGÊNIA PRF
+            </a>
+            
+            <p style="margin-top: 30px; opacity: 0.9;">
+                <strong>Sua família merece essa mudança.<br>
+                Seus R$ 15.000,00 mensais estão te aguardando.<br>
+                Sua nova vida começa AGORA!</strong>
+            </p>
+        </div>
+    </section>
+
+    <script>
+        // FAQ Toggle
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const isOpen = answer.classList.contains('show');
+                
+                // Fecha todas as outras respostas
+                document.querySelectorAll('.faq-answer').forEach(ans => {
+                    ans.classList.remove('show');
+                });
+                
+                document.querySelectorAll('.faq-question').forEach(q => {
+                    q.classList.remove('active');
+                });
+                
+                // Abre/fecha a resposta clicada
+                if (!isOpen) {
+                    answer.classList.add('show');
+                    question.classList.add('active');
+                }
+            });
+        });
+
+        // Smooth scrolling for CTA buttons
+        document.querySelectorAll('.cta-button').forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                // Redireciona para a seção PRF do seu site
+                window.location.href = 'https://seusite.com/prf#assinar';
+                
+                // Alternativa para abrir em nova aba (descomente se preferir):
+                // window.open('https://seusite.com/prf#assinar', '_blank');
+            });
+        });
+    </script>
+</body>
+</html>
