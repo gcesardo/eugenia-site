@@ -55,8 +55,8 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            opacity: 0.15; /* Opacidade da marca d'água, ajuste conforme necessário */
-            z-index: 1; /* Coloca a imagem atrás do conteúdo */
+            opacity: 0.15;
+            z-index: 1;
         }
         
         .hero-content {
@@ -107,7 +107,6 @@
             font-weight: bold;
             font-size: 1.1em;
             animation: pulse 2s infinite;
-            /* Adicionado para fixar no topo */
             position: fixed;
             top: 0;
             left: 0;
@@ -394,6 +393,86 @@
             position: relative;
         }
         
+        /* Estilos para a thumbnail personalizada */
+        .video-thumbnail {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .video-thumbnail:hover {
+            transform: scale(1.02);
+        }
+        
+        .video-thumbnail img {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            display: block;
+        }
+        
+        .video-play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, #003d7a 0%, #1e5f99 100%);
+            color: #FFD700;
+            border: none;
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            font-size: 2.5em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0, 61, 122, 0.7);
+            z-index: 10;
+        }
+        
+        .video-play-button:hover {
+            transform: translate(-50%, -50%) scale(1.1);
+            box-shadow: 0 8px 30px rgba(0, 61, 122, 0.9);
+            background: linear-gradient(135deg, #1e5f99 0%, #2a75bb 100%);
+        }
+        
+        .video-play-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 55%;
+            transform: translate(-50%, -50%);
+            width: 0;
+            height: 0;
+            border-left: 20px solid currentColor;
+            border-top: 12px solid transparent;
+            border-bottom: 12px solid transparent;
+        }
+        
+        /* Overlay escuro sobre a thumbnail */
+        .video-thumbnail::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 1;
+            transition: opacity 0.3s ease;
+        }
+        
+        .video-thumbnail:hover::before {
+            opacity: 0.1;
+        }
+        
+        /* Estilo do vídeo quando carregado */
         .video-container video,
         .video-container iframe {
             max-width: 100%;
@@ -409,28 +488,6 @@
             height: 315px;
         }
         
-        /* Play button overlay para mais engagement visual */
-        .video-play-overlay {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: rgba(0, 61, 122, 0.9);
-            color: #FFD700;
-            border: none;
-            border-radius: 50%;
-            width: 80px;
-            height: 80px;
-            font-size: 2em;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            box-shadow: 5px 5px 20px rgba(0, 61, 122, 0.5);
-        }
-        
-        /* Destacar textos amarelos específicos da PRF */
         .creator-card p:nth-of-type(1) {
             color: #FFD700 !important;
         }
@@ -465,10 +522,16 @@
                 height: 200px;
             }
             
-            .video-play-overlay {
-                width: 60px;
-                height: 60px;
-                font-size: 1.5em;
+            .video-play-button {
+                width: 70px;
+                height: 70px;
+                font-size: 1.8em;
+            }
+            
+            .video-play-button::before {
+                border-left-width: 15px;
+                border-top-width: 9px;
+                border-bottom-width: 9px;
             }
         }
     </style>
@@ -488,10 +551,10 @@
                 <div style="margin: 50px 0;">
                     <p style="font-size: 1.2em; margin-bottom: 20px; opacity: 0.9;">👇 <strong>Assista este vídeo e descubra como a Eugênia vai acelerar sua aprovação:</strong></p>
                     <div class="video-container">
-                        <video controls poster="[THUMBNAIL_VIDEO]" style="width: 100%; max-width: 600px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
-                            <source src="[VIDEO_URL]" type="video/mp4">
-                            Seu navegador não suporta o elemento de vídeo.
-                        </video>
+                        <div class="video-thumbnail" id="videoThumbnail">
+                            <img src="thumbPRF.jpg" alt="Thumbnail do vídeo da Eugênia PRF" />
+                            <div class="video-play-button"></div>
+                        </div>
                     </div>
                 </div>
                 
@@ -678,64 +741,4 @@
             <h2>🔥 O UNIFORME DA PRF TE ESPERA</h2>
             <p>Não deixe para amanhã a decisão que pode <strong>transformar completamente sua vida</strong> hoje.</p>
             
-            <div style="background: rgba(255,215,0,0.1); padding: 30px; border-radius: 15px; margin: 40px 0; backdrop-filter: blur(10px);">
-                <h3 style="font-size: 1.8em; margin-bottom: 20px; color: #FFD700;">🌟 PRF: A MELHOR CARREIRA DO BRASIL!</h3>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; text-align: left;">
-                    <div style="color: #FFD700;">✅ <strong>Salário que pode chegar a R$ 20.000,00</strong></div>
-                    <div style="color: #FFD700;">✅ <strong>Escala 1x3</strong> (trabalha 1 dia, folga 3 dias)</div>
-                    <div style="color: #FFD700;">✅ <strong>Estabilidade</strong> e respeito</div>
-                    <div style="color: #FFD700;">✅ <strong>Missão nobre:</strong> defender a sociedade</div>
-                </div>
-            </div>
-            
-            <p style="font-size: 1.4em; font-weight: bold; margin-bottom: 20px;">Comece hoje por apenas R$ 59,90/mês!</p>
-            <a href="#" class="cta-button" style="font-size: 1.4em; padding: 25px 50px;">
-                🚀 COMEÇAR AGORA COM A EUGÊNIA PRF
-            </a>
-            
-            <p style="margin-top: 30px; opacity: 0.9;">
-                <strong>Você merece essa oportunidade.<br>
-                Uma nova realidade está te aguardando.<br>
-                Sua nova vida depende dessa atitude!</strong>
-            </p>
-        </div>
-    </section>
-
-    <script>
-        // FAQ Toggle
-        document.querySelectorAll('.faq-question').forEach(question => {
-            question.addEventListener('click', () => {
-                const answer = question.nextElementSibling;
-                const isOpen = answer.classList.contains('show');
-                
-                // Fecha todas as outras respostas
-                document.querySelectorAll('.faq-answer').forEach(ans => {
-                    ans.classList.remove('show');
-                });
-                
-                document.querySelectorAll('.faq-question').forEach(q => {
-                    q.classList.remove('active');
-                });
-                
-                // Abre/fecha a resposta clicada
-                if (!isOpen) {
-                    answer.classList.add('show');
-                    question.classList.add('active');
-                }
-            });
-        });
-
-        // Smooth scrolling for CTA buttons
-        document.querySelectorAll('.cta-button').forEach(button => {
-            button.addEventListener('click', (e) => {
-                e.preventDefault();
-                // Redireciona para a seção PRF do seu site
-                window.location.href = 'https://seusite.com/prf#assinar';
-                
-                // Alternativa para abrir em nova aba (descomente se preferir):
-                // window.open('https://seusite.com/prf#assinar', '_blank');
-            });
-        });
-    </script>
-</body>
-</html>
+            <div style="background: rgba(255,215,0,0.1); padding: 30px; border-radius: 15px; margin: 40px
