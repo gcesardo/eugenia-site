@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <script>
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '2006815676815357');
+        fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=2006815676815357&ev=PageView&noscript=1"
+    /></noscript>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ASSISTA O VÍDEO PARTE 3 - Eugênia PPMG</title>
+
+    <style>
+        /* Estilos baseados no arquivo original */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+            padding-top: 60px; /* Adicionado para evitar que o banner fixo cubra o conteúdo */
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- Estilos do Banner de Alerta (Copiados do Original) --- */
+        .alert-banner {
+            background: linear-gradient(135deg, #DC143C 0%, #B22222 100%);
+            color: white;
+            text-align: center;
+            padding: 15px;
+            font-weight: bold;
+            font-size: 1.1em;
+            animation: pulse 2s infinite;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        
+        .alert-siren {
+            display: inline-block;
+            animation: siren-flash 1s infinite alternate;
+            transform-origin: center;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.8; }
+            100% { opacity: 1; }
+        }
+        
+        @keyframes siren-flash {
+            0% { 
+                transform: rotate(-10deg) scale(1);
+                filter: hue-rotate(0deg) brightness(1);
+            }
+            25% { 
+                transform: rotate(10deg) scale(1.1);
+                filter: hue-rotate(60deg) brightness(1.3);
+            }
+            50% { 
+                transform: rotate(-5deg) scale(1.05);
+                filter: hue-rotate(120deg) brightness(1.5);
+            }
+            75% { 
+                transform: rotate(5deg) scale(1.15);
+                filter: hue-rotate(180deg) brightness(1.2);
+            }
+            100% { 
+                transform: rotate(0deg) scale(1.2);
+                filter: hue-rotate(360deg) brightness(1.6);
+            }
+        }
+        /* ----------------------------------------------------------- */
+
+        /* Hero modificado para ocupar o espaço restante da tela */
+        .hero {
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #333333 100%);
+            color: white;
+            min-height: calc(100vh - 60px); /* Ajustado para compensar o banner fixo */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 0; 
+        }
+
+        /* Watermark (Marca d'água) idêntica à original */
+        .hero .watermark {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            background-image: url('IMAGEM_PPMG_MELHORADA.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.15;
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 90%;
+        }
+
+        /* Estilo do Vídeo */
+        .video-container {
+            position: relative;
+            margin: 20px auto;
+            max-width: 800px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border-radius: 15px;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .video-container video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Texto ASSISTA pulsante */
+        .watch-text {
+            font-size: 2.5em; /* Tamanho ajustado para ser notável */
+            font-weight: bold;
+            color: white; /* Cor branca para contrastar */
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 8px rgba(220, 20, 60, 0.7); /* Sombra para dar destaque */
+            animation: cta-pulse 1s infinite alternate; /* Reutiliza a animação de pulso */
+            display: inline-block; /* Para que a animação funcione */
+        }
+
+        /* Botão CTA */
+        .cta-button {
+            display: none; /* Começa oculto */
+            background: linear-gradient(135deg, #DC143C 0%, #B22222 100%);
+            color: white;
+            padding: 20px 40px;
+            font-size: 1.3em;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 50px;
+            box-shadow: 0 8px 20px rgba(220, 20, 60, 0.4);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            border: none;
+            margin-top: 40px;
+            animation: cta-pulse 1s infinite alternate; /* Animação de pulso */
+        }
+
+        .cta-button:hover {
+            background: linear-gradient(135deg, #B22222 0%, #A52A2A 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(220, 20, 60, 0.6);
+            color: white;
+        }
+
+        /* Animação de pulso (reutilizada para o texto "ASSISTA") */
+        @keyframes cta-pulse {
+            0% {
+                transform: scale(1);
+            }
+            100% {
+                transform: scale(1.05);
+            }
+        }
+
+        /* Estilos Responsivos */
+        @media (max-width: 768px) {
+            .alert-banner {
+                font-size: 0.9em;
+                padding: 10px 5px;
+            }
+            body {
+                padding-top: 50px;
+            }
+            .hero {
+                min-height: calc(100vh - 50px);
+                padding: 40px 0;
+            }
+            .watch-text {
+                font-size: 2em;
+            }
+            .cta-button {
+                padding: 15px 30px;
+                font-size: 1.1em;
+            }
+        }
+    </style>
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-PVCSGSG9');</script>
+    </head>
+
+<body>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PVCSGSG9"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    
+    <div class="alert-banner">
+        <span class="alert-siren">🚨</span> ESTÁ QUASE LÁ! Assista a Parte 3 para receber o link de acesso final!
+    </div>
+    
+    <section class="hero">
+        <div class="watermark"></div>
+        <div class="container">
+            <div class="hero-content">
+
+                <h1 class="watch-text">ASSISTA A PARTE 3</h1>
+
+                <div class="video-container">
+                    <video id="vslVideo" src="vslparte3.mp4" controls preload="auto" playsinline controlsList="nodownload nofullscreen">
+                        Seu navegador não suporta o vídeo.
+                    </video>
+                </div>
+                
+                <p style="margin-top: 20px; opacity: 0.8; font-size: 1.1em;">
+                    ✅ Últimos detalhes antes de começar a usar o método.
+                </p>
+
+                <a href="landingppmg4.html" id="ctaButton" class="cta-button">
+                    ACESSAR O MÉTODO AGORA
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const video = document.getElementById('vslVideo');
+        const ctaButton = document.getElementById('ctaButton');
+        let videoEndedSent = false;
+        
+        // Garante que o volume será máximo assim que o vídeo puder ser reproduzido.
+        video.onloadedmetadata = function() {
+            video.volume = 1.0; // Volume máximo
+            console.log('Video volume set to max (1.0).');
+        };
+
+        // Função para rastrear evento quando o vídeo termina (Meta Event: InitiateCheckout)
+        function trackVideoEnd() {
+            if (!videoEndedSent && typeof fbq === 'function') {
+                fbq('track', 'InitiateCheckout', { // Evento ajustado para o estágio de alta intenção
+                    content_name: 'VSL_Parte3_Video_Ended',
+                    content_category: 'High_Intent_Final'
+                });
+                console.log('Meta Event: InitiateCheckout (VSL Parte 3 Ended) fired.');
+                videoEndedSent = true;
+            }
+        }
+
+        // Evento que dispara quando o vídeo termina
+        video.addEventListener('ended', () => {
+            // 1. Mostra o botão de CTA
+            ctaButton.style.display = 'inline-block';
+
+            // 2. Rastreia o evento de vídeo concluído
+            trackVideoEnd();
+        });
+        
+        // Função para rastrear o clique no CTA (Meta Event: CompleteRegistration ou Purchase, dependendo do funil)
+        function trackCtaClick() {
+            if (typeof fbq === 'function') {
+                fbq('track', 'CompleteRegistration', { // Assumindo que o próximo passo é uma página de checkout/cadastro
+                    content_name: 'VSL_Parte3_To_Next_Page_Click',
+                    value: 0.00, 
+                    currency: 'BRL'
+                });
+                console.log('Meta Event: CompleteRegistration (VSL Parte 3 CTA Click) fired.');
+            }
+        }
+
+        // Adiciona o rastreamento ao clique do botão
+        ctaButton.addEventListener('click', trackCtaClick);
+        
+        // Injeção de CSS para ocultar controles específicos (volume, download, fullscreen)
+        const style = document.createElement('style');
+        style.type = 'text/css';
+        style.innerHTML = `
+            /* Tentativa de ocultar o controle de volume em alguns navegadores */
+            video::-webkit-media-controls-volume-slider,
+            video::-webkit-media-controls-mute-button,
+            video::-webkit-media-controls-toggle-closed-captions-button {
+                display: none !important;
+            }
+            video::-webkit-media-controls-enclosure {
+                overflow: hidden !important;
+            }
+            /* Ajusta a largura do painel para que apenas o controle de play/pause apareça */
+            video::-webkit-media-controls-panel {
+                width: 100% !important; 
+            }
+        `;
+        document.getElementsByTagName('head')[0].appendChild(style);
+
+    </script>
+</body>
+
+</html>
