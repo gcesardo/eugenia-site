@@ -1,0 +1,1810 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=f;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '2006815676815357');
+fbq('track', 'PageView');
+</script>
+
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=2006815676815357&ev=PageView&noscript=1"
+/></noscript>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PPMG - Assistente de IA para Concursos no WhatsApp</title>
+
+    <style>
+
+        * {
+
+            margin: 0;
+
+            padding: 0;
+
+            box-sizing: border-box;
+
+        }
+
+        
+        body {
+
+            font-family: 'Arial', sans-serif;
+
+            line-height: 1.6;
+
+            color: #333;
+
+            background: #f8f9fa;
+
+            padding-top: 60px;
+
+        }
+
+        
+        .container {
+
+            max-width: 1200px;
+
+            margin: 0 auto;
+
+            padding: 0 20px;
+
+        }
+
+        
+        .alert-banner {
+
+            background: linear-gradient(135deg, #DC143C 0%, #B22222 100%);
+
+            color: white;
+
+            text-align: center;
+
+            padding: 15px;
+
+            font-weight: bold;
+
+            font-size: 1.1em;
+
+            animation: pulse 2s infinite;
+
+            position: fixed;
+
+            top: 0;
+
+            left: 0;
+
+            width: 100%;
+
+            z-index: 1000;
+
+        }
+
+        
+        .alert-siren {
+
+            display: inline-block;
+
+            animation: siren-flash 1s infinite alternate;
+
+            transform-origin: center;
+
+        }
+
+        
+        @keyframes pulse {
+
+            0% { opacity: 1; }
+
+            50% { opacity: 0.8; }
+
+            100% { opacity: 1; }
+
+        }
+
+        
+        @keyframes siren-flash {
+
+            0% { 
+
+                transform: rotate(-10deg) scale(1);
+
+                filter: hue-rotate(0deg) brightness(1);
+
+            }
+
+            25% { 
+
+                transform: rotate(10deg) scale(1.1);
+
+                filter: hue-rotate(60deg) brightness(1.3);
+
+            }
+
+            50% { 
+
+                transform: rotate(-5deg) scale(1.05);
+
+                filter: hue-rotate(120deg) brightness(1.5);
+
+            }
+
+            75% { 
+
+                transform: rotate(5deg) scale(1.15);
+
+                filter: hue-rotate(180deg) brightness(1.2);
+
+            }
+
+            100% { 
+
+                transform: rotate(0deg) scale(1.2);
+
+                filter: hue-rotate(360deg) brightness(1.6);
+
+            }
+
+        }
+
+        
+        .hero {
+
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #333333 100%);
+
+            color: white;
+
+            padding: 80px 0;
+
+            text-align: center;
+
+            position: relative;
+
+            overflow: hidden;
+
+            margin-top: 0;
+
+        }
+
+        
+        .hero::before {
+
+            content: '';
+
+            position: absolute;
+
+            top: 0;
+
+            left: 0;
+
+            right: 0;
+
+            bottom: 0;
+
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+
+            opacity: 0.3;
+
+        }
+
+        
+        .hero .watermark {
+
+            position: absolute;
+
+            top: 50%;
+
+            left: 50%;
+
+            transform: translate(-50%, -50%);
+
+            width: 100%;
+
+            height: 100%;
+
+            background-image: url('IMAGEM_PPMG_MELHORADA.jpg');
+
+            background-size: cover;
+
+            background-position: center;
+
+            background-repeat: no-repeat;
+
+            opacity: 0.15;
+
+            z-index: 1;
+
+        }
+
+        
+        .hero-content {
+
+            position: relative;
+
+            z-index: 2;
+
+        }
+
+        
+        .hero h1 {
+
+            font-size: 3.5em;
+
+            font-weight: bold;
+
+            margin-bottom: 20px;
+
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+
+        }
+
+        
+        .hero .subheadline {
+
+            font-size: 1.4em;
+
+            margin-bottom: 30px;
+
+            opacity: 0.95;
+
+        }
+
+        
+        .cta-button {
+
+            display: inline-block;
+
+            background: linear-gradient(135deg, #DC143C 0%, #B22222 100%);
+
+            color: white;
+
+            padding: 20px 40px;
+
+            font-size: 1.3em;
+
+            font-weight: bold;
+
+            text-decoration: none;
+
+            border-radius: 50px;
+
+            box-shadow: 0 8px 20px rgba(220, 20, 60, 0.4);
+
+            transition: all 0.3s ease;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1px;
+
+            cursor: pointer;
+
+            border: none;
+
+        }
+
+        
+        .cta-button:hover {
+
+            background: linear-gradient(135deg, #B22222 0%, #A52A2A 100%);
+
+            transform: translateY(-2px);
+
+            box-shadow: 0 12px 25px rgba(220, 20, 60, 0.6);
+
+            color: white;
+
+        }
+
+        
+        /* Modal styles */
+
+        .modal {
+
+            display: none;
+
+            position: fixed;
+
+            z-index: 10000;
+
+            left: 0;
+
+            top: 0;
+
+            width: 100%;
+
+            height: 100%;
+
+            background-color: rgba(0,0,0,0.8);
+
+            backdrop-filter: blur(5px);
+
+        }
+
+        
+        .modal-content {
+
+            background-color: #fff;
+
+            margin: 10% auto;
+
+            padding: 30px;
+
+            border-radius: 15px;
+
+            width: 90%;
+
+            max-width: 500px;
+
+            text-align: center;
+
+            position: relative;
+
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+
+        }
+
+        
+        .close {
+
+            color: #aaa;
+
+            float: right;
+
+            font-size: 28px;
+
+            font-weight: bold;
+
+            position: absolute;
+
+            right: 15px;
+
+            top: 10px;
+
+            cursor: pointer;
+
+        }
+
+        
+        .close:hover {
+
+            color: #000;
+
+        }
+
+        
+        .whatsapp-link {
+
+            background: #25D366;
+
+            color: white;
+
+            padding: 15px 30px;
+
+            border-radius: 25px;
+
+            text-decoration: none;
+
+            font-weight: bold;
+
+            display: inline-block;
+
+            margin: 10px;
+
+            transition: all 0.3s ease;
+
+        }
+
+        
+        .whatsapp-link:hover {
+
+            background: #1da851;
+
+            color: white;
+
+            transform: translateY(-2px);
+
+        }
+
+        
+        .copy-link-btn {
+
+            background: #007bff;
+
+            color: white;
+
+            padding: 15px 30px;
+
+            border: none;
+
+            border-radius: 25px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            margin: 10px;
+
+            transition: all 0.3s ease;
+
+        }
+
+        
+        .copy-link-btn:hover {
+
+            background: #0056b3;
+
+            transform: translateY(-2px);
+
+        }
+
+        
+        .section {
+
+            padding: 80px 0;
+
+        }
+
+        
+        .section-title {
+
+            font-size: 2.5em;
+
+            text-align: center;
+
+            margin-bottom: 50px;
+
+            color: #2c3e50;
+
+            font-weight: bold;
+
+        }
+
+        
+        .benefits {
+
+            background: white;
+
+        }
+
+        
+        .benefits-grid {
+
+            display: grid;
+
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+
+            gap: 40px;
+
+            margin-top: 50px;
+
+        }
+
+        
+        .benefit-card {
+
+            padding: 30px;
+
+            background: #f8f9fa;
+
+            border-radius: 15px;
+
+            text-align: center;
+
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+
+            transition: transform 0.3s ease;
+
+        }
+
+        
+        .benefit-card:hover {
+
+            transform: translateY(-5px);
+
+        }
+
+        
+        .benefit-icon {
+
+            font-size: 3em;
+
+            margin-bottom: 20px;
+
+            color: #000000;
+
+        }
+
+        
+        .benefit-card h3 {
+
+            font-size: 1.3em;
+
+            margin-bottom: 15px;
+
+            color: #2c3e50;
+
+        }
+
+        
+        .proof {
+
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #333333 100%);
+
+            color: white;
+
+        }
+
+        
+        .proof .section-title {
+
+            color: white;
+
+        }
+
+        
+        .creators-grid {
+
+            display: grid;
+
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+
+            gap: 40px;
+
+            margin-top: 50px;
+
+        }
+
+        
+        .creator-card {
+
+            background: rgba(255,255,255,0.1);
+
+            padding: 30px;
+
+            border-radius: 15px;
+
+            text-align: center;
+
+            backdrop-filter: blur(10px);
+
+        }
+
+        
+        .creator-avatar {
+
+            width: 120px;
+
+            height: 120px;
+
+            border-radius: 50%;
+
+            margin: 0 auto 20px;
+
+            object-fit: cover;
+
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+
+        }
+
+        
+        .how-it-works {
+
+            background: #f8f9fa;
+
+        }
+
+        
+        .steps {
+
+            display: grid;
+
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+
+            gap: 30px;
+
+            margin-top: 50px;
+
+        }
+
+        
+        .step {
+
+            text-align: center;
+
+            padding: 30px;
+
+            background: white;
+
+            border-radius: 15px;
+
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+
+        }
+
+        
+        .step-number {
+
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+
+            color: white;
+
+            width: 60px;
+
+            height: 60px;
+
+            border-radius: 50%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 1.5em;
+
+            font-weight: bold;
+
+            margin: 0 auto 20px;
+
+        }
+
+        
+        .step h3 {
+
+            font-size: 1.3em;
+
+            margin-bottom: 10px;
+
+        }
+
+        
+        .testimonials {
+
+            background: white;
+
+        }
+
+        
+        .testimonials-grid {
+
+            display: grid;
+
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+
+            gap: 30px;
+
+            margin-top: 50px;
+
+        }
+
+        
+        .testimonial {
+
+            background: #f8f9fa;
+
+            padding: 30px;
+
+            border-radius: 15px;
+
+            border-left: 5px solid #000000;
+
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+
+        }
+
+        
+        .testimonial-text {
+
+            font-style: italic;
+
+            margin-bottom: 20px;
+
+            font-size: 1.1em;
+
+            line-height: 1.8;
+
+        }
+
+        
+        .testimonial-author {
+
+            font-weight: bold;
+
+            color: #000000;
+
+        }
+
+        
+        .faq {
+
+            background: #f8f9fa;
+
+        }
+
+        
+        .faq-item {
+
+            background: white;
+
+            margin-bottom: 20px;
+
+            border-radius: 10px;
+
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+
+        }
+
+        
+        .faq-question {
+
+            padding: 20px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            border-bottom: 1px solid #eee;
+
+            color: #000000;
+
+            font-size: 1.1em;
+
+            position: relative;
+
+            transition: all 0.3s ease;
+
+        }
+
+        
+        .faq-question:hover {
+
+            background-color: #f8f9fa;
+
+        }
+
+        
+        .faq-answer {
+
+            padding: 20px;
+
+            color: #666;
+
+            line-height: 1.8;
+
+            display: none;
+
+            transition: all 0.3s ease;
+
+        }
+
+        
+        .faq-answer.show {
+
+            display: block;
+
+        }
+
+        
+        .faq-question::after {
+
+            content: '+';
+
+            position: absolute;
+
+            right: 20px;
+
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            font-size: 1.5em;
+
+            font-weight: bold;
+
+            transition: transform 0.3s ease;
+
+        }
+
+        
+        .faq-question.active::after {
+
+            transform: translateY(-50%) rotate(45deg);
+
+        }
+
+        
+        .cta-section {
+
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #333333 100%);
+
+            color: white;
+
+            text-align: center;
+
+            padding: 100px 0;
+
+        }
+
+        
+        .cta-section h2 {
+
+            font-size: 2.8em;
+
+            margin-bottom: 30px;
+
+        }
+
+        
+        .cta-section p {
+
+            font-size: 1.3em;
+
+            margin-bottom: 40px;
+
+            opacity: 0.95;
+
+        }
+
+        
+        .cta-section .cta-button {
+
+            background: linear-gradient(135deg, #DC143C 0%, #B22222 100%);
+
+            color: white;
+
+        }
+
+        
+        .cta-section .cta-button:hover {
+
+            background: linear-gradient(135deg, #B22222 0%, #A52A2A 100%);
+
+            color: white;
+
+        }
+
+        
+        .whatsapp-demo {
+
+            background: white;
+
+        }
+
+        
+        .video-container-whatsapp {
+
+            text-align: center;
+
+            margin: 20px auto;
+
+            max-width: 300px;
+
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+
+            border-radius: 30px;
+
+            overflow: hidden;
+
+            background: #000;
+
+            padding: 20px;
+
+        }
+
+        
+        .video-container-whatsapp video {
+
+            width: 100%;
+
+            height: auto;
+
+            border-radius: 15px;
+
+        }
+
+        
+        /* ESTILO PARA O PLAYER HTML5 VSL */
+
+        .video-container {
+
+            text-align: center;
+
+            margin: 20px 0;
+
+            position: relative;
+
+        }
+
+        
+        .video-container video {
+            /* REMOVIDO: controls - para ocultar a barra de comandos */
+            max-width: 100%;
+
+            height: auto;
+
+            border-radius: 15px;
+
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+
+            width: 100%;
+
+            max-width: 600px; /* Mantém a largura máxima do YouTube anterior */
+
+            aspect-ratio: 16/9; /* Garante proporção 16:9 */
+
+            background: #000;
+        }
+
+        
+        .video-play-overlay {
+
+            position: absolute;
+
+            top: 50%;
+
+            left: 50%;
+
+            transform: translate(-50%, -50%);
+
+            background: rgba(0, 0, 0, 0.9);
+
+            color: #DC143C;
+
+            border: none;
+
+            border-radius: 50%;
+
+            width: 80px;
+
+            height: 80px;
+
+            font-size: 2em;
+
+            cursor: pointer;
+
+            /* MANTIDO: display: none para o overlay do player antigo VSL */
+            display: none; 
+            align-items: center;
+
+            justify-content: center;
+
+            transition: all 0.3s ease;
+
+            box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.5);
+
+        }
+
+        
+        .creator-card p:nth-of-type(1) {
+
+            color: #DC143C !important;
+
+        }
+
+        
+        .cta-section div[style*="backdrop-filter"] {
+
+            background: rgba(220, 20, 60, 0.1) !important;
+
+        }
+
+        
+        .cta-section div[style*="backdrop-filter"] div {
+
+            color: #DC143C;
+
+        }
+
+        
+        @media (max-width: 768px) {
+
+            .alert-banner {
+
+                font-size: 0.9em;
+
+                padding: 10px 5px;
+
+            }
+
+            
+            body {
+
+                padding-top: 50px;
+
+            }
+
+            
+            .hero {
+
+                padding: 60px 0;
+
+            }
+
+            
+            .hero h1 {
+
+                font-size: 2.5em;
+
+            }
+
+            
+            .hero .subheadline {
+
+                font-size: 1.2em;
+
+            }
+
+            
+            .section-title {
+
+                font-size: 2em;
+
+            }
+
+            
+            .cta-button {
+
+                padding: 15px 30px;
+
+                font-size: 1.1em;
+
+            }
+
+            
+            .video-container video { /* Ajustado para vídeo HTML5 */
+
+                height: auto;
+
+                max-width: 100%;
+
+            }
+
+            
+            .video-play-overlay {
+
+                width: 60px;
+
+                height: 60px;
+
+                font-size: 1.5em;
+
+            }
+
+            
+            .creators-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+            
+            .benefits-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+            
+            .modal-content {
+
+                margin: 20% auto;
+
+                width: 95%;
+
+                padding: 20px;
+
+            }
+
+        }
+        
+        /* CSS para ocultar controles específicos do player (herdados das páginas VSL anteriores) */
+        /* MANTIDO ESTES CSS COMO FORAM ORIGINALMENTE */
+        video::-webkit-media-controls-volume-slider,
+        video::-webkit-media-controls-mute-button,
+        video::-webkit-media-controls-toggle-closed-captions-button {
+            display: none !important;
+        }
+        video::-webkit-media-controls-enclosure {
+            overflow: hidden !important;
+        }
+        video::-webkit-media-controls-panel {
+            width: 100% !important; 
+        }
+        
+        /* NOVO CSS: Oculta o botão CTA principal inicialmente */
+        #mainCtaContainer {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 1s ease, visibility 0s 1s;
+        }
+        
+        #mainCtaContainer.visible {
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 1s ease, visibility 0s 0s;
+        }
+
+    </style>
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-PVCSGSG9');</script>
+    </head>
+
+<body>
+
+    <div id="whatsappModal" class="modal">
+
+        <div class="modal-content">
+
+            <span class="close">&times;</span>
+
+            <h3>Assine a Eugênia PPMG!</h3>
+
+            <p><strong>Clique no botão para ir para a página de pagamento segura da Kiwify:</strong></p>
+
+            
+
+            <div style="margin: 20px 0;">
+
+                <a href="https://pay.kiwify.com.br/JdPcLeH" class="whatsapp-link" target="_blank" style="background: #DC143C;" onclick="trackKiwifyClick()">
+
+                    ASSINAR AGORA!
+
+                </a>
+
+                <br>
+
+                <button class="copy-link-btn" onclick="copyToClipboard()">
+
+                    Copiar Link
+
+                </button>
+
+            </div>
+
+            
+
+            <p style="font-size: 0.9em; color: #666; margin-top: 15px;">
+
+                <strong>Dica:</strong> Se não funcionar, copie o link e cole diretamente no seu navegador!
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="alert-banner">
+
+        <span class="alert-siren">🚨</span> ATENÇÃO: Enquanto você estuda do jeito antigo, outros já estão na frente com IA!
+
+    </div>
+
+
+    <section class="hero">
+
+        <div class="watermark"></div>
+
+        <div class="container">
+
+            <div class="hero-content">
+
+                <h1>🎯 EUGÊNIA PPMG<br>Sua Mentora de IA no WhatsApp</h1>
+
+                <p class="subheadline">A primeira assistente de estudos com Inteligência Artificial 100% focada no concurso da POLÍCIA PENAL DE MG. Estude com flashcards inteligentes, revisão espaçada e acompanhamento personalizado direto no seu WhatsApp!</p>
+
+                
+
+                <div style="margin: 50px 0;">
+
+                    <p style="font-size: 1.2em; margin-bottom: 20px; opacity: 0.9;">👇 <strong>Assista este vídeo e descubra como a Eugênia PPMG vai acelerar sua APROVAÇÃO:</strong></p>
+                    
+                    <div class="video-container">
+                        <video id="vslVideo" src="vslparte4.mp4" autoplay playsinline controlsList="nodownload nofullscreen">
+                            Seu navegador não suporta o vídeo.
+                        </video>
+                        <div id="videoOverlay" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; cursor: pointer;">
+                            <button style="background: linear-gradient(135deg, #DC143C 0%, #B22222 100%); color: white; padding: 15px 30px; border-radius: 50px; font-size: 1.1em; font-weight: bold; border: none; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.3);">
+                                CLIQUE PARA ASSISTIR E OUVIR
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+
+                
+                <div id="mainCtaContainer">
+                    <a href="https://pay.kiwify.com.br/JdPcLeH" class="cta-button" target="_blank" onclick="trackKiwifyClick()">🚀 ASSINAR AGORA!</a>
+                </div>
+
+                
+
+                <p style="margin-top: 20px; opacity: 0.8;">✅ Sem baixar app • ✅ Funciona no WhatsApp • ✅ Conteúdo 100% atualizado</p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="benefits section">
+        <div class="container">
+            <h2 class="section-title">Por Que a Eugênia PPMG Vai Te Deixar Anos à Frente dos Outros Candidatos?</h2>
+            
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">🧠</div>
+                    <h3>Flashcards Inteligentes</h3>
+                    <p>Cards que aprendem seu ritmo e apresentam exatamente o que você precisa revisar no momento ideal para maximizar sua retenção.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">⚡</div>
+                    <h3>Revisões Baseadas na Curva de Esquecimento</h3>
+                    <p>Método científico que multiplica sua retenção em até 300%. Você nunca mais vai "esquecer" uma matéria que já estudou.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">🎯</div>
+                    <h3>100% Focado no Último Edital</h3>
+                    <p>Cada questão, explicação e dica é milimetricamente alinhada com o que a POLÍCIA PENAL DE MG vai cobrar na sua prova.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">📊</div>
+                    <h3>Relatórios de Performance</h3>
+                    <p>Saiba exatamente em que ponto está e o que precisa focar para garantir sua aprovação com dados precisos.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">📢</div>
+                    <h3>Notificações Automáticas</h3>
+                    <p>Nunca mais você vai "esquecer" de estudar. A EUGÊNIA PPMG cuida disso para você com lembretes inteligentes.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">📱</div>
+                    <h3>Direto no WhatsApp</h3>
+                    <p>Sem baixar app! Funciona no WhatsApp que você já usa. Simples, prático e sem ocupar memória do celular.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="proof section">
+        <div class="container">
+            <h2 class="section-title">Criada por Quem REALMENTE Entende de Concurso Público</h2>
+            <p style="text-align: center; font-size: 1.2em; margin-bottom: 30px;">A EUGÊNIA PPMG não foi criada por qualquer pessoa. Ela é obra de dois gigantes da aprovação:</p>
+            
+            <div class="creators-grid">
+                <div class="creator-card">
+                    <img class="creator-avatar" src="geraldo-cesar.jpg" alt="Foto do Geraldo César">
+                    <h3>Geraldo César</h3>
+                    <p style="font-size: 1.1em; margin: 10px 0; color: #DC143C;">Policial Legislativo - 2º Lugar no Senado Federal</p>
+                    <p>Um homem que viveu na pele o que você está vivendo agora. Sentiu a pressão, a ansiedade, mas VENCEU e hoje quer te entregar o mapa da mina.</p>
+                </div>
+                
+                <div class="creator-card">
+                    <img class="creator-avatar" src="rafael-duclou.jpg" alt="Foto do Rafael Duclou">
+                    <h3>Rafael Duclou</h3>
+                    <p style="font-size: 1.1em; margin: 10px 0; color: #DC143C;">Ex-PRF e Policial Legislativo no Senado</p>
+                    <p>Conhece cada detalhe da carreira da PRF por ter vivido na pele. Hoje, como Policial Legislativo, une experiência prática com conhecimento estratégico.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="whatsapp-demo section">
+        <div class="container">
+            <h2 class="section-title">Veja Como Funciona no Seu WhatsApp</h2>
+            <p style="text-align: center; font-size: 1.2em; margin-bottom: 50px;">É como ter um professor particular que mora no seu WhatsApp!</p>
+            
+            <div class="video-container-whatsapp">
+                <video src="videousoeugenia.mp4" autoplay loop muted playsinline>
+                    Seu navegador não suporta o vídeo.
+                </video>
+            </div>
+            
+            <div style="text-align: center; margin-top: 40px;">
+                <p style="font-size: 1.2em; color: #666; margin-bottom: 30px;"><strong>É exatamente assim que funciona:</strong> Simples, direto e eficaz!</p>
+                <a href="https://pay.kiwify.com.br/JdPcLeH" class="cta-button" target="_blank" onclick="trackKiwifyClick()">ASSINAR AGORA! 🚀</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="how-it-works section">
+        <div class="container">
+            <h2 class="section-title">Como Começar em 3 Passos Simples</h2>
+            
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Clique e Assine</h3>
+                    <p>Clique no botão, vá para a página de pagamento e prepare-se para transformar seus estudos. Processo rápido e sem burocracia.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Recebe no WhatsApp</h3>
+                    <p>Após a assinatura, adicione o contato da Eugênia PPMG no seu WhatsApp. Não precisa baixar nenhum app adicional!</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Estuda e Conquista</h3>
+                    <p>Comece a estudar com flashcards inteligentes, revisão espaçada e acompanhamento personalizado!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials section">
+        <div class="container">
+            <h2 class="section-title">O Que Nossos Alunos Estão Falando</h2>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial">
+                    <div class="testimonial-text">
+                        "Incrível! A Eugênia PPMG me ajudou a organizar meus estudos de um jeito que nunca imaginei. Os flashcards são perfeitos e as notificações me mantêm sempre focado. Já sinto que estou muito mais preparado!"
+                    </div>
+                    <div class="testimonial-author">- Carlos M., Candidato POLÍCIA PENAL DE MG</div>
+                </div>
+                
+                <div class="testimonial">
+                    <div class="testimonial-text">
+                        "O que mais me impressionou foi a precisão das questões. A IA realmente entende onde tenho dificuldade e foca exatamente nisso. É como ter um professor particular 24h no WhatsApp!"
+                    </div>
+                    <div class="testimonial-author">- Ana L., Candidato POLÍCIA PENAL DE MG</div>
+                </div>
+                
+                <div class="testimonial">
+                    <div class="testimonial-text">
+                        "Estava perdido nos estudos até conhecer a Eugênia PPMG. Agora tenho um plano claro, sei exatamente o que estudar cada dia e minha evolução é visível nos relatórios."
+                    </div>
+                    <div class="testimonial-author">- João P., Futuro Policial Penal</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq section">
+        <div class="container">
+            <h2 class="section-title">Dúvidas Frequentes</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">A Eugênia PPMG funciona no computador e no celular?</div>
+                <div class="faq-answer">Sim! Como funciona pelo WhatsApp, você pode usar tanto no celular quanto no WhatsApp Web no computador. Total flexibilidade para estudar onde e quando quiser.</div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Preciso ter material de estudo próprio?</div>
+                <div class="faq-answer">Não! A Eugênia PPMG já vem com todo o conteúdo necessário, baseado no último edital da POLÍCIA PENAL DE MG. Questões inéditas, explicações detalhadas e material de revisão já inclusos.</div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Quantas horas por dia preciso estudar?</div>
+                <div class="faq-answer">A Eugênia PPMG se adapta ao SEU tempo! Pode estudar 30 minutos ou 3 horas por dia. O importante é a consistência, e a IA vai otimizar seu tempo para máxima eficiência.</div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Funciona mesmo sem baixar app?</div>
+                <div class="faq-answer">Exato! 100% no WhatsApp que você já tem. Não ocupa memória adicional, não trava o celular e você já conhece a interface. Simplicidade total!</div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">E se eu não gostar? Tem garantia?</div>
+                <div class="faq-answer">Sim! Oferecemos garantia de 7 dias. Se não ficar satisfeito, devolvemos 100% do seu dinheiro, sem perguntas.</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2>🔥 O UNIFORME DA POLÍCIA PENAL TE ESPERA</h2>
+            <p>Não deixe para amanhã a decisão que pode <strong>transformar completamente sua vida</strong> hoje.</p>
+            
+            <div style="background: rgba(220,20,60,0.1); padding: 30px; border-radius: 15px; margin: 40px 0; backdrop-filter: blur(10px);">
+                <h3 style="font-size: 1.8em; margin-bottom: 20px; color: #DC143C;">🌟 PPMG: UMA DAS MELHORES CARREIRAS DA SEGURANÇA PÚBLICA DE MINAS GERAIS!</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; text-align: left;">
+                    <div style="color: #DC143C;">✅ <strong>Salário inicial pode passar de R$ 7.000,00</strong></div>
+                    <div style="color: #DC143C;">✅ <strong>Escala 24x72</strong></div>
+                    <div style="color: #DC143C;">✅ <strong>Estabilidade</strong> e respeito</div>
+                    <div style="color: #DC143C;">✅ <strong>Missão nobre:</strong> Segurança Pública</div>
+                </div>
+            </div>
+            
+            <p style="font-size: 1.4em; font-weight: bold; margin-bottom: 20px;">Assine a Eugênia agora.</p>
+            <a href="https://pay.kiwify.com.br/JdPcLeH" class="cta-button" style="font-size: 1.4em; padding: 25px 50px;" target="_blank" onclick="trackKiwifyClick()">
+                🚀 ASSINAR AGORA!
+            </a>
+            
+            <p style="margin-top: 30px; opacity: 0.9;">
+                <strong>Você merece essa oportunidade.<br>
+                Uma nova realidade está te aguardando.<br>
+                Sua nova vida depende dessa atitude!</strong>
+            </p>
+            
+            <p style="margin-top: 20px; font-size: 1.1em; opacity: 0.8;">
+                ⚡ Vagas limitadas • 🔒 Pagamento 100% seguro • 📞 Suporte personalizado
+            </p>
+        </div>
+    </section>
+
+
+    <script>
+
+        // NOVO LINK KIWIFY
+        const newKiwifyLink = 'https://pay.kiwify.com.br/JdPcLeH';
+        
+        // Configuração do vídeo HTML5
+        const video = document.getElementById('vslVideo');
+        const videoOverlay = document.getElementById('videoOverlay');
+        const mainCtaContainer = document.getElementById('mainCtaContainer');
+        let videoPlayed = false;
+        let ctaVisible = false;
+
+        // Função para tentar iniciar a reprodução com áudio
+        function attemptPlay() {
+            if (video) {
+                video.volume = 1.0; // Volume máximo
+                const playPromise = video.play();
+
+                if (playPromise !== undefined) {
+                    playPromise.then(_ => {
+                        // Reprodução iniciada com sucesso (provavelmente com áudio)
+                        videoOverlay.style.display = 'none';
+                        console.log('Video started successfully and unmuted.');
+                        // Inicia o timer para o CTA
+                        startCtaTimer();
+                    }).catch(error => {
+                        // Reprodução falhou (por exemplo, bloqueio de áudio).
+                        // Mantém a reprodução automática (muda) e mostra o overlay para clique.
+                        video.muted = true; 
+                        video.play();
+                        videoOverlay.style.display = 'flex';
+                        console.log('Video failed to start with sound, showing overlay.');
+                        // Inicia o timer de qualquer forma (o vídeo já está rodando mudo)
+                        startCtaTimer();
+                    });
+                }
+            }
+        }
+
+        // Função para lidar com o clique no overlay (fallback para desmutar)
+        if (videoOverlay) {
+            videoOverlay.addEventListener('click', () => {
+                if (video.muted) {
+                    video.muted = false;
+                    video.volume = 1.0;
+                    videoOverlay.style.display = 'none';
+                    console.log('User clicked overlay, video unmuted.');
+                } else if (video.paused) {
+                    video.play();
+                    videoOverlay.style.display = 'none';
+                    console.log('User clicked overlay, video played.');
+                }
+            });
+        }
+        
+        // Função para mostrar o CTA principal
+        function showCta() {
+            if (!ctaVisible) {
+                mainCtaContainer.classList.add('visible');
+                ctaVisible = true;
+                console.log('CTA Main button shown after 20 seconds.');
+            }
+        }
+        
+        // Timer para mostrar o CTA principal após 20 segundos (20000ms)
+        function startCtaTimer() {
+            setTimeout(showCta, 20000);  // <-- ALTERADO PARA 20000 ms (20 segundos)
+        }
+
+        // Inicia a tentativa de reprodução ao carregar o DOM
+        document.addEventListener('DOMContentLoaded', attemptPlay);
+        
+        // Rastreamento de Play no Vídeo (Meta Event: ViewContent)
+        if (video) {
+            video.addEventListener('play', () => {
+                if (!videoPlayed) {
+                    if (typeof fbq === 'function') {
+                        fbq('track', 'ViewContent', { 
+                            content_name: 'Video_Eugenia_PPMG_VSL4',
+                            content_category: 'Video Play VSL'
+                        });
+                        console.log('Meta Event: ViewContent (Video Play VSL4) fired.');
+                    }
+                    videoPlayed = true;
+                }
+            });
+        }
+        
+        // Função para rastrear clique de checkout
+        function trackKiwifyClick() {
+            if (typeof fbq === 'function') {
+                fbq('track', 'InitiateCheckout', { 
+                    content_name: 'Assinatura_PPMG',
+                    value: 1.00,
+                    currency: 'BRL'
+                });
+                console.log('Meta Event: InitiateCheckout (Click Assinar Agora) fired.');
+            }
+        }
+
+
+        // Função para copiar link
+        function copyToClipboard() {
+
+            const link = newKiwifyLink;
+
+            
+
+            if (navigator.clipboard && window.isSecureContext) {
+
+                navigator.clipboard.writeText(link).then(() => {
+
+                    alert('✅ Link copiado! Cole no seu navegador para assinar.');
+
+                }).catch(() => {
+
+                    fallbackCopyToClipboard(link);
+
+                });
+
+            } else {
+
+                fallbackCopyToClipboard(link);
+
+            }
+
+        }
+
+
+        // Fallback para copiar texto
+
+        function fallbackCopyToClipboard(text) {
+
+            const textArea = document.createElement('textarea');
+
+            textArea.value = text;
+
+            textArea.style.position = 'fixed';
+
+            textArea.style.left = '-999999px';
+
+            textArea.style.top = '-999999px';
+
+            document.body.appendChild(textArea);
+
+            textArea.focus();
+
+            textArea.select();
+
+            
+            try {
+
+                document.execCommand('copy');
+
+                alert('✅ Link copiado! Cole no seu navegador para assinar.');
+
+            } catch (err) {
+
+                prompt('Copie este link e cole no seu navegador:', text);
+
+            }
+
+            
+
+            document.body.removeChild(textArea);
+
+        }
+
+        
+        // Fechar modal
+
+        document.querySelector('.close').onclick = function() {
+
+            document.getElementById('whatsappModal').style.display = 'none';
+
+        }
+
+
+        window.onclick = function(event) {
+
+            const modal = document.getElementById('whatsappModal');
+
+            if (event.target == modal) {
+
+                modal.style.display = 'none';
+
+            }
+
+        }
+
+
+        // FAQ Toggle functionality
+
+        document.addEventListener('DOMContentLoaded', function() {
+
+            const faqQuestions = document.querySelectorAll('.faq-question');
+
+            
+            faqQuestions.forEach(question => {
+
+                question.addEventListener('click', function() {
+
+                    const answer = this.nextElementSibling;
+
+                    const isOpen = answer.classList.contains('show');
+
+                    
+                    document.querySelectorAll('.faq-answer').forEach(ans => {
+
+                        ans.classList.remove('show');
+
+                    });
+
+                    
+                    document.querySelectorAll('.faq-question').forEach(q => {
+
+                        q.classList.remove('active');
+
+                    });
+
+                    
+                    if (!isOpen) {
+
+                        answer.classList.add('show');
+
+                        this.classList.add('active');
+
+                    }
+
+                });
+
+            });
+
+        });
+
+        
+        // Smooth scroll for anchor links
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+
+            anchor.addEventListener('click', function (e) {
+
+                e.preventDefault();
+
+                const target = document.querySelector(this.getAttribute('href'));
+
+                if (target) {
+
+                    target.scrollIntoView({
+
+                        behavior: 'smooth',
+
+                        block: 'start'
+
+                    });
+
+                }
+
+            });
+
+        });
+
+        
+        // Add animation when elements come into view
+
+        const observerOptions = {
+
+            threshold: 0.1,
+
+            rootMargin: '0px 0px -50px 0px'
+
+        };
+
+        
+        const observer = new IntersectionObserver(function(entries) {
+
+            entries.forEach(entry => {
+
+                if (entry.isIntersecting) {
+
+                    entry.target.style.opacity = '1';
+
+                    entry.target.style.transform = 'translateY(0)';
+
+                }
+
+            });
+
+        }, observerOptions);
+
+        
+        // Observe benefit cards for animation
+
+        document.addEventListener('DOMContentLoaded', function() {
+
+            const benefitCards = document.querySelectorAll('.benefit-card, .step, .testimonial');
+
+            benefitCards.forEach(card => {
+
+                card.style.opacity = '0';
+
+                card.style.transform = 'translateY(30px)';
+
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+
+                observer.observe(card);
+
+            });
+
+        });
+
+        
+        // 2. Rastreamento de Rolagem de 100% da Página (Scroll to Bottom)
+
+        
+        let scrollCompleteSent = false;
+
+
+        window.addEventListener('scroll', function() {
+
+            if (scrollCompleteSent) return;
+
+
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+            const scrollHeight = document.documentElement.scrollHeight;
+
+            const clientHeight = document.documentElement.clientHeight;
+
+
+            if (scrollTop + clientHeight >= scrollHeight) {
+
+                if (typeof fbq === 'function') {
+
+                    fbq('track', 'CompleteRegistration', { 
+                        content_name: 'Scroll_100_percent',
+
+                        content_category: 'High_Engagement'
+
+                    });
+
+                    console.log('Meta Event: CompleteRegistration (100% Scroll) fired.');
+
+                }
+
+                scrollCompleteSent = true;
+
+            }
+
+        });
+
+
+    </script>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PVCSGSG9"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    </body>
+
+
+</html>
